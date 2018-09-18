@@ -14,12 +14,30 @@ export default class Header extends React.Component {
 			return (
 				<div className="App">
 					<ImageSlider />
+					<button
+						onClick={() => {
+							this.setState({
+								componentToShow: 'Counter'
+							});
+						}}
+					>
+						show counter
+					</button>
 				</div>
 			);
 		} else if (this.state.componentToShow === 'Counter') {
 			return (
 				<div className="App">
 					<Counter initialCount={1} />
+					<button
+						onClick={() => {
+							this.setState({
+								componentToShow: 'ImageSlider'
+							});
+						}}
+					>
+						show images
+					</button>
 				</div>
 			);
 		}

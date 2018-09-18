@@ -5,34 +5,25 @@ import ImageSlider from './ImageSlider';
 
 export default class Header extends React.Component {
 	state = {
-		visible: true
+		visible: true,
+		componentToShow: 'ImageSlider'
 	};
 
 	render() {
-		// if (!this.state.visible) {
-		// 	return <div>display nothing</div>;
-		// 	//content after this if-condition this will not render when visible is false.
-		// }
+		if (this.state.componentToShow === 'ImageSlider') {
+			return (
+				<div className="App">
+					<ImageSlider />
+				</div>
+			);
+		} else if (this.state.componentToShow === 'Counter') {
+			return (
+				<div className="App">
+					<Counter initialCount={1} />
+				</div>
+			);
+		}
 
-		const buttonText = this.state.visible ? 'hide' : 'show';
-		const slider = this.state.visible ? <ImageSlider /> : <Counter initialCount={1} />;
-		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to Practical React</h1>
-				</header>
-				{slider}
-				<button
-					onClick={() => {
-						this.setState({
-							visible: !this.state.visible
-						});
-					}}
-				>
-					{buttonText}
-				</button>
-			</div>
-		);
+		return null;
 	}
 }

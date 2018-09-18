@@ -13,8 +13,8 @@ export default class ImageSlider extends React.Component {
 	};
 
 	handleNext = () => {
-		console.log(this.state);
 		this.setState({ idx: this.state.idx + 1 }, () => {
+			//callback for async rendering
 			console.log(this.state);
 		});
 	};

@@ -2,46 +2,15 @@ import React from 'react';
 import logo from '../logo.svg';
 import Counter from './Counter';
 import ImageSlider from './ImageSlider';
+import MyForm from './MyForm';
 
 export default class Header extends React.Component {
-	state = {
-		visible: true,
-		componentToShow: 'ImageSlider'
-	};
+    state = {
+        visible: true,
+        componentToShow: 'ImageSlider'
+    };
 
-	render() {
-		if (this.state.componentToShow === 'ImageSlider') {
-			return (
-				<div className="App">
-					<ImageSlider />
-					<button
-						onClick={() => {
-							this.setState({
-								componentToShow: 'Counter'
-							});
-						}}
-					>
-						show counter
-					</button>
-				</div>
-			);
-		} else if (this.state.componentToShow === 'Counter') {
-			return (
-				<div className="App">
-					<Counter initialCount={1} />
-					<button
-						onClick={() => {
-							this.setState({
-								componentToShow: 'ImageSlider'
-							});
-						}}
-					>
-						show images
-					</button>
-				</div>
-			);
-		}
-
-		return null;
-	}
+    render() {
+        return <MyForm />;
+    }
 }

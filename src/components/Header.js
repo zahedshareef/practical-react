@@ -1,16 +1,26 @@
 import React from 'react';
-import logo from '../logo.svg';
 import Counter from './Counter';
-import ImageSlider from './ImageSlider';
-import MyForm from './MyForm';
 
 export default class Header extends React.Component {
     state = {
-        visible: true,
-        componentToShow: 'ImageSlider'
+        visible: true
     };
 
     render() {
-        return <MyForm />;
+        return (
+            <div className="App">
+                <div className={this.state.visible ? 'visible' : 'hidden'}>
+                    <Counter initialCount={1} />
+                </div>
+                <button
+                    onClick={() => {
+                        this.setState({
+                            visible: !this.state.visible
+                        });
+                    }}>
+                    toggle counter
+                </button>
+            </div>
+        );
     }
 }

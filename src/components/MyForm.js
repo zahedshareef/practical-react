@@ -42,14 +42,13 @@ export default class MyForm extends React.Component {
                     <input value={this.state.name} onChange={this.handleChange} />
                 </div>
                 Remember: <input type="checkbox" value={this.state.rememberMe} onChange={this.handleCheckbox} />
+                <button onClick={this.handleSubmit}>Submit</button>
                 <div>
                     <p>
-                        Welcome, {this.state.title}. {this.state.name}. Your preference to remember has been set to:{' '}
+                        Welcome, {this.state.title}. {this.state.name}. Your preference to remember is set to:
                         {this.state.rememberMe ? 'yes' : 'no'}
                     </p>
                 </div>
-                <button onClick={this.handleSubmit}>Submit</button>
-                <p>{JSON.stringify(this.state)}</p>
             </div>
         );
     }

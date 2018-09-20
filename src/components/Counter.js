@@ -11,6 +11,14 @@ export default class Counter extends React.Component {
         this.increment = this.increment.bind(this);
     }
 
+    componentWillUnmount = () => {
+        console.log('unmounting...');
+    };
+
+    componentDidMount = () => {
+        console.log('mounting...');
+    };
+
     increment() {
         this.setState({
             count: this.state.count + 1
@@ -39,8 +47,7 @@ export default class Counter extends React.Component {
                         this.setState({
                             count: this.props.initialCount
                         });
-                    }}
-                >
+                    }}>
                     reset
                 </button>
             </div>

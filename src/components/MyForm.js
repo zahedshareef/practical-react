@@ -7,21 +7,10 @@ export default class MyForm extends React.Component {
         title: 'Master'
     };
 
-    handleChange = (event) => {
+    handleChange = (event, fieldname, isCheckbox) => {
+        console.log(isCheckbox ? event.target.checked : event.target.value);
         this.setState({
-            name: event.target.value
-        });
-    };
-
-    handleCheckbox = (event) => {
-        this.setState({
-            rememberMe: event.target.checked
-        });
-    };
-
-    handleSelect = (event) => {
-        this.setState({
-            title: event.target.value
+            [fieldname]: isCheckbox ? event.target.checked : event.target.value
         });
     };
 
@@ -33,22 +22,21 @@ export default class MyForm extends React.Component {
         return (
             <div className="App">
                 <div>
-                    <select value={this.state.title} onChange={this.handleSelect}>
+                    <select value={this.state.title} onChange={(event) => this.handleChange(event, 'title')}>
                         <option>Mr</option>
                         <option>Mrs</option>
                         <option>Ms</option>
                         <option>Master</option>
                     </select>
-                    <input value={this.state.name} onChange={this.handleChange} />
+                    <input value={this.state.name} onChange={(event) => this.handleChange(event, 'name')} />
                 </div>
-                Remember: <input type="checkbox" value={this.state.rememberMe} onChange={this.handleCheckbox} />
+                Remember:{' '}
+                <input
+                    type="checkbox"
+                    value={this.state.rememberMe}
+                    onChange={(event) => this.handleChange(event, 'checkbox', true)}
+                />
                 <button onClick={this.handleSubmit}>Submit</button>
-                <div>
-                    <p>
-                        Welcome, {this.state.title}. {this.state.name}. Your preference to remember is set to:
-                        {this.state.rememberMe ? 'yes' : 'no'}
-                    </p>
-                </div>
             </div>
         );
     }

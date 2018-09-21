@@ -1,5 +1,5 @@
 import React from 'react';
-import MyForm from './MyForm';
+import ValidationForm from './ValidationForm';
 
 export default class Header extends React.Component {
     state = {
@@ -9,7 +9,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className="App">
-                <MyForm />
+                <ValidationForm />
             </div>
         );
     }

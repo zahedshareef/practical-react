@@ -4,40 +4,42 @@ export default class MyForm extends React.Component {
     state = {
         name: 'zahed',
         rememberMe: false,
-        title: 'Master'
+        title: 'Master',
+        description: 'Describe yourself'
     };
 
-    handleChange = (event, fieldname, isCheckbox) => {
+    handleChange = (event) => {
+        const isCheckbox = event.target.type === 'checkbox';
         console.log(isCheckbox ? event.target.checked : event.target.value);
         this.setState({
-            [fieldname]: isCheckbox ? event.target.checked : event.target.value
+            [event.target.name]: isCheckbox ? event.target.checked : event.target.value
         });
     };
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         console.log(this.state);
     };
 
     render() {
         return (
-            <div className="App">
+            <form onSubmit={this.handleSubmit}>
                 <div>
-                    <select value={this.state.title} onChange={(event) => this.handleChange(event, 'title')}>
+                    <select name="title" value={this.state.title} onChange={this.handleChange}>
                         <option>Mr</option>
                         <option>Mrs</option>
                         <option>Ms</option>
                         <option>Master</option>
                     </select>
-                    <input value={this.state.name} onChange={(event) => this.handleChange(event, 'name')} />
+                    <input name="name" value={this.state.name} onChange={this.handleChange} />
+                </div>
+                <div>
+                    <textarea name="description" value={this.state.description} onChange={this.handleChange} />
                 </div>
                 Remember:{' '}
-                <input
-                    type="checkbox"
-                    value={this.state.rememberMe}
-                    onChange={(event) => this.handleChange(event, 'checkbox', true)}
-                />
-                <button onClick={this.handleSubmit}>Submit</button>
-            </div>
+                <input name="rememberMe" type="checkbox" value={this.state.rememberMe} onChange={this.handleChange} />
+                <button type="submit">Submit</button>
+            </form>
         );
     }
 }

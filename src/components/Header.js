@@ -1,5 +1,5 @@
 import React from 'react';
-import ValidationForm from './ValidationForm';
+import FetchData from './FetchData';
 
 export default class Header extends React.Component {
     state = {
@@ -9,7 +9,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className="App">
-                <ValidationForm />
+                <FetchData />
             </div>
         );
     }

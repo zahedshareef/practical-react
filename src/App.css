@@ -38,3 +38,8 @@
 .hidden {
     display: none;
 }
+
+.personImg {
+    padding-top: 10px;
+    border-radius: 50%;
+}

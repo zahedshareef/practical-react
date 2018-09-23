@@ -1,16 +1,20 @@
 import React from 'react';
 
 export default class FetchData extends React.Component {
-    async componentDidMount() {
-        const url = 'https://api.randomuser.me/';
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({ person: data.results[0], loading: false });
-    }
-
     state = {
         loading: true,
-        person: null
+        people: []
+    };
+
+    async componentDidMount() {
+        await this.fetchPeople();
+    }
+
+    fetchPeople = async () => {
+        const url = 'https://api.randomuser.me?results=6';
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ people: data.results, loading: false });
     };
 
     titleCase = (str) => {
@@ -28,21 +32,23 @@ export default class FetchData extends React.Component {
             return <div>loading...</div>;
         }
 
-        if (!this.state.person) {
+        if (!this.state.people.length) {
             return <div>error...</div>;
         }
 
-        const name =
-            this.titleCase(this.state.person.name.title) +
-            ' ' +
-            this.titleCase(this.state.person.name.first) +
-            ' ' +
-            this.titleCase(this.state.person.name.last);
+        const peopleJsx = this.state.people.map((person) => (
+            <div key={person.login.uuid}>
+                <img className="personImg" src={person.picture.large} alt={person.name.first} />
+                <h3>Name: {this.titleCase(`${person.name.first} ${person.name.last}`)}</h3>
+                <h4>Gender: {person.gender}</h4>
+            </div>
+        ));
+
         return (
             <div className="App">
-                <img className="personImg" src={this.state.person.picture.large} alt={this.state.person.name.first} />
-                <h3>Name: {name}</h3>
-                <h4>Gender: {this.state.person.gender}</h4>
+                <ul className="people-list">
+                    <li className="people-item">{peopleJsx}</li>
+                </ul>
             </div>
         );
     }

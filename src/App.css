@@ -43,3 +43,20 @@
     padding-top: 10px;
     border-radius: 50%;
 }
+
+.people-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.people-item {
+    margin: 20px;
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+}

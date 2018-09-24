@@ -3,7 +3,8 @@ import Counter from './Counter';
 
 export default class Header extends React.Component {
     state = {
-        count: 0
+        count: 1,
+        initialCount: 0
     };
 
     increment = () => {
@@ -18,11 +19,27 @@ export default class Header extends React.Component {
         });
     };
 
+    reset = () => {
+        this.setState({
+            count: this.state.initialCount
+        });
+    };
+
     render() {
         return (
             <div className="App">
-                <Counter count={this.state.count} increment={this.increment} decrement={this.decrement} />
-                <Counter count={this.state.count} increment={this.increment} decrement={this.decrement} />
+                <Counter
+                    count={this.state.count}
+                    increment={this.increment}
+                    decrement={this.decrement}
+                    reset={this.reset}
+                />
+                <Counter
+                    count={this.state.count}
+                    increment={this.increment}
+                    decrement={this.decrement}
+                    reset={this.reset}
+                />
             </div>
         );
     }

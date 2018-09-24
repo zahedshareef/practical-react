@@ -42,6 +42,7 @@ export default class Counter extends React.Component {
                 <h3>Count: {this.props.count}</h3>
                 <button onClick={this.props.decrement}>Decrement</button>
                 <button onClick={this.props.increment}>Increment</button>
+                <button onClick={this.props.reset}>Reset</button>
             </div>
         );
     }

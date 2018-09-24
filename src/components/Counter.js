@@ -1,15 +1,15 @@
 import React from 'react';
 
 export default class Counter extends React.Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            count: props.initialCount
-        };
+    //     this.state = {
+    //         count: props.initialCount
+    //     };
 
-        this.increment = this.increment.bind(this);
-    }
+    //     this.increment = this.increment.bind(this);
+    // }
 
     componentWillUnmount = () => {
         console.log('unmounting...');
@@ -19,11 +19,11 @@ export default class Counter extends React.Component {
         console.log('mounting...');
     };
 
-    increment() {
-        this.setState({
-            count: this.state.count + 1
-        });
-    }
+    // increment() {
+    //     this.setState({
+    //         count: this.state.count + 1
+    //     });
+    // }
     // increment = () => {
     // 	this.setState({
     // 		count: this.state.count + 1
@@ -39,17 +39,9 @@ export default class Counter extends React.Component {
     render() {
         return (
             <div>
-                <h3>Count: {this.state.count}</h3>
-                <button onClick={this.decrement}>Decrement</button>
-                <button onClick={this.increment}>Increment</button>
-                <button
-                    onClick={() => {
-                        this.setState({
-                            count: this.props.initialCount
-                        });
-                    }}>
-                    reset
-                </button>
+                <h3>Count: {this.props.count}</h3>
+                <button onClick={this.props.decrement}>Decrement</button>
+                <button onClick={this.props.increment}>Increment</button>
             </div>
         );
     }

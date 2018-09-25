@@ -5,7 +5,8 @@ import Todo from './Todo';
 export default class TodoList extends React.Component {
     state = {
         todos: [],
-        filterTodo: 'all'
+        filterTodo: 'all',
+        toggleAllTodos: true
     };
 
     addTodos = (todo) => {
@@ -36,9 +37,15 @@ export default class TodoList extends React.Component {
     };
 
     deleteTodo = (id) => {
-        this.setState({
-            todos: this.state.todos.filter((todo) => todo.id !== id)
-        });
+        this.setState((state) => ({
+            todos: state.todos.filter((todo) => todo.id !== id)
+        }));
+    };
+
+    removeAllCompleteTodos = () => {
+        this.setState((state) => ({
+            todos: state.todos.filter((todo) => !todo.complete)
+        }));
     };
 
     render() {
@@ -59,13 +66,33 @@ export default class TodoList extends React.Component {
                 <button onClick={() => this.updateFilterTodo('complete')}>complete</button>
                 {todos.map((todo) => (
                     <Todo
-                        key={todo.key}
+                        key={todo.id}
                         onDelete={() => this.deleteTodo(todo.id)}
                         toggleComplete={() => this.toggleComplete(todo.id)}
                         todo={todo}
                     />
                 ))}
                 <div>todos left: {this.state.todos.filter((todo) => !todo.complete).length}</div>
+                {this.state.todos.some((todo) => todo.complete) ? (
+                    <div>
+                        <button onClick={this.removeAllCompleteTodos}>remove all complete todos</button>
+                    </div>
+                ) : null}
+
+                <div>
+                    <button
+                        onClick={() => {
+                            this.setState((state) => ({
+                                todos: state.todos.map((todo) => ({
+                                    ...todo,
+                                    complete: state.toggleAllTodos
+                                })),
+                                toggleAllTodos: !state.toggleAllTodos
+                            }));
+                        }}>
+                        toggle all complete todos: {this.state.toggleAllTodos.toString()}
+                    </button>
+                </div>
             </div>
         );
     }

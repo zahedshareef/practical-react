@@ -10,9 +10,11 @@ export default class TodoList extends React.Component {
     };
 
     addTodos = (todo) => {
-        this.setState({
-            todos: [ todo, ...this.state.todos ]
-        });
+        if (!todo || todo !== '') {
+            this.setState({
+                todos: [ todo, ...this.state.todos ]
+            });
+        }
     };
 
     toggleComplete = (id) => {

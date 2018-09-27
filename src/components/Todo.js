@@ -8,7 +8,8 @@ export default (props) => (
         }}>
         <div
             style={{
-                textDecoration: props.todo.complete ? 'line-through' : ''
+                textDecoration: props.todo.complete ? 'line-through' : '',
+                color: props.todo.complete ? 'red' : 'black'
             }}
             key={props.todo.key}
             onClick={props.toggleComplete}>
